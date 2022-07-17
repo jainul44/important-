@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload files</title>
+</head>
+<body>
+    
+    <section>
+        <figure class="img-container">
+            <img id="image">
+        </figure>
+        <input type="file" id="uploadInput">
+        <label for="uploadInput" id="uploadLabel">upload image</label>
+    </section>
+    <style>
+        section{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .img-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;            
+            height: 80vh;
+            width: 80vw;
+            border: 1px solid black;
+            padding: 5px;
+        }
+        #image{
+            max-width: 100%;
+            max-height: 100%;
+        }
+        #uploadInput{
+            display: none;
+        }
+        #uploadLabel{
+            padding: 10px;
+            color: white;
+            background-color: blue;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        let image = document.getElementById("image");
+        let uploadButton = document.getElementById("uploadInput");
+
+        uploadButton.onchange = () => {
+            let reader = new FileReader();
+            reader.readAsDataURL(uploadButton.files[0])
+            reader.onload = () => {
+                image.setAttribute("src", reader.result);
+            }
+        }
+    </script>
+</body>
+</html>
